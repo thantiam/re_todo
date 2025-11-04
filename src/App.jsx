@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 import { Item } from "./Item";
-import { List } from "./List";
+//import { List } from "./List";
 import { Form } from "./Form";
+import Header from "./Header";
+import { Container, Divider, List } from "@mui/material";
 
 
         
@@ -28,14 +30,12 @@ export default function App() {
                   setData(data.filter(data => data.id != id));
               }
      return <>
-               <h1 style={{ fontWeight: 600, color: '#608000' , fontSize:'2em'}} >ToDo List...</h1>
-                   <br />
-                      
-                      <Form add = {add} />
+               <Header />
 
-                      <br /><br /><br />
-                      
-                      <div style={{ color:'#e11616ff', fontFamily:'JetBrains Mono', fontWeight:600, fontStyle: 'italic', fontSize: '1.2em' }} > Do - { data.filter(data => !data.done).length } </div>
+               <Container maxWidth="sm" sx={{mt:6,}} >
+                    <Form add = {add}/>
+                    <br /><br />
+                      <div style={{ color:'#e11616ff', fontFamily:'JetBrains Mono', fontWeight:600, fontStyle: 'italic', fontSize: '1.2em',}} > Do - { data.filter(data => !data.done).length } </div>
                       <List>
                           { 
                            data.filter(data => !data.done).map(data => (
@@ -48,9 +48,9 @@ export default function App() {
                            ) )
                            }
                       </List>
-                      <br />
-                      <hr />
-                      <br />
+                    
+                      <Divider sx={{ my: 3 }} />
+                      
 
                       <div style={{ color:'#608000', fontFamily:'JetBrains Mono', fontWeight:600, fontStyle: 'italic', fontSize: '1.2em' }} > Done - { data.filter(data => data.done).length } </div>
                       <List>
@@ -65,6 +65,7 @@ export default function App() {
                            ) )
                            }
                       </List>
+               </Container>       
 
             </> 
 }
